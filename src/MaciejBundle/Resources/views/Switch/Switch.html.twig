@@ -1,8 +1,25 @@
 {# empty Twig template #}
-<ul>
-    <li> <a href="maciej/first">First</a></li>
-    <li> <a href="maciej/second">Second</a></li>
-    <li> <a href="maciej/form">Form</a></li>
-</ul>
+
         
-        
+  <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Test Application{% endblock %}</title>
+    </head>
+    <body>
+        <div id="sidebar">
+            {% block sidebar %}
+                <ul>
+                    <li> <a href="http://shushei.site/app_dev.php/maciej/first">First</a></li>
+                    <li> <a href="http://shushei.site/app_dev.php/maciej/second">Second</a></li>
+                    <li> <a href="http://shushei.site/app_dev.php/maciej/form">Form</a></li>
+                </ul>
+            {% endblock %}
+        </div>
+
+        <div id="content">
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>     
