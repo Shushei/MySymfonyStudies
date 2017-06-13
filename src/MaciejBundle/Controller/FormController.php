@@ -2,13 +2,31 @@
 
 namespace MaciejBundle\Controller;
 
+use MaciejBundle\Controller\FormBaseController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class FormController extends Controller
 {
-    public function FormAction()
+    public function FormAction(Request $request)
     {
-            return $this->render('MaciejBundle:Form:form.html.twig');
+        $company = new FormBaseController();
+        $company->setCompany('Blizzard');
+        $company->setTitle('World of Warcraft');
+        $company->setReleaseDate(new \DateTime('yesterday'));
+        
+        $form = $this->createFormBuilder($company)
+                ->add('Company', TextType::class)
+                ->add('Title', TextType::class)
+                ->add('releaseDate', DateType::class)
+                ->add('save', SubmitType::class, array('label' => 'Create Post'))
+                ->getForm();
+              
+        
+            return $this->render('MaciejBundle:Form:form.html.twig', array('form' =>$form->createView(),));
     }
         
 }
