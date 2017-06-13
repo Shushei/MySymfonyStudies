@@ -1,3 +1,14 @@
-maciej_homepage:
-    path:     /
-    defaults: { _controller: MaciejBundle:Default:index }
+
+maciej_form:
+    path:     /maciej/form
+    defaults: { _controller: MaciejBundle:Form:Form }
+maciej_first:
+    path:       /maciej/first
+    defaults: { _controller: MaciejBundle:First:show }
+maciej_second:
+    path:       /maciej/second
+    defaults: { _controller: MaciejBundle:Second:show }
+maciej_switch:
+    path:       /maciej
+    defaults: { _controller: MaciejBundle:Switch:switch }
+    
