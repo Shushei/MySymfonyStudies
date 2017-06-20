@@ -1,5 +1,12 @@
 {% extends 'MaciejBundle:Switch:Switch.html.twig' %}
 
 {% block title %}First{% endblock %}
+{% block sidebar %}
+                <ul>
+                    <li> <a href="{{ path('maciej_first', {'wild': 'first'})}}">First</a></li>
+                    <li> <a href="{{ path('maciej_second', {'wild': 'second'})}}">Second</a></li>
+                    <li> <a href="{{ path('maciej_form', {'wild': 'form'})}}">Form</a></li>
+                </ul>
+            {% endblock %}
     
 {% block body %} First Page {% endblock %}    

@@ -8,6 +8,8 @@ class FirstController extends Controller
 {
     public function showAction()
     {
+        
+              
       
         return $this->render('MaciejBundle:First:First.html.twig');
     }

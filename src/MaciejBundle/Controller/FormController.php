@@ -8,12 +8,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 
+
 class FormController extends Controller
 {
-    public function FormAction(Request $request)
+    public function showAction(Request $request)
     {
        $formBase = new FormBase();
        $form =$this->createForm(FormType::class, $formBase);
+      
         
             return $this->render('MaciejBundle:Form:form.html.twig', array('form' =>$form->createView(),));
     }

@@ -1,14 +1,24 @@
 
-maciej_form:
-    path:     /maciej/form
-    defaults: { _controller: MaciejBundle:Form:Form }
-maciej_first:
-    path:       /maciej/first
-    defaults: { _controller: MaciejBundle:First:show }
-maciej_second:
-    path:       /maciej/second
-    defaults: { _controller: MaciejBundle:Second:show }
 maciej_switch:
     path:       /maciej
-    defaults: { _controller: MaciejBundle:Switch:switch }
+    defaults: { _controller: MaciejBundle:Switch:show }
+    
+
+    
+maciej_first:
+    path:       /maciej/{wild}
+    defaults: { _controller: MaciejBundle:First:show}
+    requirements: 
+         wild: first
+         
+maciej_second:
+    path:       /maciej/{wild}
+    defaults: { _controller: MaciejBundle:Second:show}
+    requirements: 
+         wild: second
+    
+maciej_form:
+    path:     /maciej/{wild}
+    defaults: { _controller: MaciejBundle:Form:show}
+
     

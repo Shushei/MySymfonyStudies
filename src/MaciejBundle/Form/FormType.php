@@ -19,7 +19,6 @@ class FormType extends AbstractType
                 ->add('Company', TextType::class)
                 ->add('Title', TextType::class)
                 ->add('releaseDate', DateType::class)
-                ->add('save', SubmitType::class, array('label' => 'Create Post'))
                 ->getForm();
         
     }
