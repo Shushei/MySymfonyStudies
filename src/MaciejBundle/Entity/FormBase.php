@@ -6,14 +6,14 @@
  * and open the template in the editor.
  */
 
-namespace MaciejBundle\Controller;
+namespace MaciejBundle\Entity;
 
 /**
  * Description of FormBaseController
  *
  * @author shushei
  */
-class FormBaseController 
+class FormBase 
 {
     protected $title;
     protected $company;

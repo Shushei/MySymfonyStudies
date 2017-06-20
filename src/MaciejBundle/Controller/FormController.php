@@ -2,7 +2,7 @@
 
 namespace MaciejBundle\Controller;
 
-use MaciejBundle\Controller\FormBaseController;
+use MaciejBundle\Entity\FormBase;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,7 +13,7 @@ class FormController extends Controller
 {
     public function FormAction(Request $request)
     {
-        $company = new FormBaseController();
+        $company = new FormBase();
         $company->setCompany('Blizzard');
         $company->setTitle('World of Warcraft');
         $company->setReleaseDate(new \DateTime('yesterday'));
