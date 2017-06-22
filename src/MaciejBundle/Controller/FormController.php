@@ -6,6 +6,7 @@ use MaciejBundle\Entity\FormBase;
 use MaciejBundle\Form\FormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 
@@ -14,6 +15,11 @@ class FormController extends Controller
     public function showAction(Request $request)
     {
        $formBase = new FormBase();
+       $formBase->setCompany('Company Name');
+       $formBase->setTitle('Game Title');
+       $formBase->setReleaseDate(new \DateTime('yesterday'));
+               
+               
        $form =$this->createForm(FormType::class, $formBase);
        
        $form->handleRequest($request);
@@ -24,7 +30,10 @@ class FormController extends Controller
           $em->persist($formBase);
            $em->flush();
            
+           $title= $formBase->getTitle();
+                   
            return $this->redirect($this->generateURL('maciej_submit', array('wild' => $formBase->getTitle())));
+           
        }
       
         
@@ -33,8 +42,11 @@ class FormController extends Controller
         }
         public function submitAction()
         {
-            $title = 'tytuł';
-            return $this->render('MaciejBundle:Submit:Submit.html.twig', array('title' => $title));
+         
+            
+          
+            
+            return $this->render('MaciejBundle:Submit:Submit.html.twig', array('title' => $title,));
         }
         
 }

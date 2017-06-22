@@ -4,6 +4,7 @@
 namespace MaciejBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
      * @ORM\Entity
@@ -19,14 +20,18 @@ class FormBase
     private $id;
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     protected $title;
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     protected $company;
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank()
+     * @Assert\Type("\DateTime")
      */
     protected $releaseDate;
     

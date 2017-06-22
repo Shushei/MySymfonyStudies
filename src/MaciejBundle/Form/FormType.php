@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 
 class FormType extends AbstractType
@@ -18,7 +18,7 @@ class FormType extends AbstractType
         $builder
                 ->add('Company', TextType::class)
                 ->add('Title', TextType::class)
-                ->add('releaseDate', DateType::class)
+                ->add('releaseDate', DateType::class, array('widget' => 'single_text'))
                 ->getForm();
         
     }
