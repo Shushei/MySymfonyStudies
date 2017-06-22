@@ -15,10 +15,26 @@ class FormController extends Controller
     {
        $formBase = new FormBase();
        $form =$this->createForm(FormType::class, $formBase);
+       
+       $form->handleRequest($request);
+       
+       if ($form->isSubmitted() && $form->isValid())
+       {
+           $em = $this->getDoctrine()->getManager();
+           $em->persist($formBase);
+           $em->flush();
+           
+           return $this->redirect($this->generateURL('maciej_submit', array('wild' => $formBase->getTitle())));
+       }
       
         
             return $this->render('MaciejBundle:Form:form.html.twig', array('form' =>$form->createView(),));
-    }
+   
+        }
+        public function submitAction($title)
+        {
+            return $this->render('MaciejBundle:Submit:Submit.html.twig');
+        }
         
 }
 /* 

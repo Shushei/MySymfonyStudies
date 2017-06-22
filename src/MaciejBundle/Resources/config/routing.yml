@@ -20,5 +20,11 @@ maciej_second:
 maciej_form:
     path:     /maciej/{wild}
     defaults: { _controller: MaciejBundle:Form:show}
+    requirements:
+        wild: form
+    
+maciej_submit:
+    path:   /maciej/{wild}
+    defaults: { _controller: MaciejBundle:Form:submit}
 
     
