@@ -21,7 +21,7 @@ class FormController extends Controller
        if ($form->isSubmitted() && $form->isValid())
        {
            $em = $this->getDoctrine()->getManager();
-           $em->persist($formBase);
+          $em->persist($formBase);
            $em->flush();
            
            return $this->redirect($this->generateURL('maciej_submit', array('wild' => $formBase->getTitle())));
@@ -31,9 +31,10 @@ class FormController extends Controller
             return $this->render('MaciejBundle:Form:form.html.twig', array('form' =>$form->createView(),));
    
         }
-        public function submitAction($title)
+        public function submitAction()
         {
-            return $this->render('MaciejBundle:Submit:Submit.html.twig');
+            $title = 'tytuł';
+            return $this->render('MaciejBundle:Submit:Submit.html.twig', array('title' => $title));
         }
         
 }

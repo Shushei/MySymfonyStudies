@@ -3,11 +3,31 @@
 
 namespace MaciejBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+     * @ORM\Entity
+     * @ORM\Table(name="game")
+     */
 class FormBase 
 {
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    /**
+     * @ORM\Column(type="string")
+     */
     protected $title;
+    /**
+     * @ORM\Column(type="string")
+     */
     protected $company;
+    /**
+     * @ORM\Column(type="date")
+     */
     protected $releaseDate;
     
     public function getTitle()
@@ -38,5 +58,15 @@ class FormBase
     public function setReleaseDate(\DateTime $releaseDate = null) 
     {
         $this->releaseDate = $releaseDate;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
