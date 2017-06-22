@@ -46,7 +46,12 @@ class FormController extends Controller
             
           
             
-            return $this->render('MaciejBundle:Submit:Submit.html.twig', array('title' => $title,));
+            return $this->render('MaciejBundle:Submit:Submit.html.twig'
+                    /*, array('title' => $title,)
+             */
+              );
+             
+             
         }
         
 }
