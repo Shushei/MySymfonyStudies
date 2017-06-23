@@ -16,12 +16,16 @@
             <td>id</td>
             <td>Title</td>
             <td>Company name</td>
+            <td> Date </td>
         </tr>
     {% for id in games %}
         <tr>
         <td> {{ id.id}} </td>
         <td> {{id.title}} </td> 
         <td> {{id.company}} </td>
+        <td> {{id.releaseDate.format('Y-m-d')}} </td>
+        <td>  <input type="submit" value="Delete"
+                     class="btn btn-default pull-right"/> </td>
         </tr>
     {% endfor %}
     </table>
