@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class FormBase 
 {
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column( type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue
      */

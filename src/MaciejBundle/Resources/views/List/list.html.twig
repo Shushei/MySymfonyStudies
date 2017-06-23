@@ -11,8 +11,21 @@
             {% endblock %}
     
 {% block body %} 
-    {%for id in games %}
-     
+    <table>
+        <tr>
+            <td>id</td>
+            <td>Title</td>
+            <td>Company name</td>
+        </tr>
+    {% for id in games %}
+        <tr>
+        <td> {{ id.id}} </td>
+        <td> {{id.title}} </td> 
+        <td> {{id.company}} </td>
+        </tr>
     {% endfor %}
-    {{ dump(games) }}
+    </table>
+   
+   
+    
 {% endblock %}  {# empty Twig template #}

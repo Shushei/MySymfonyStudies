@@ -14,9 +14,9 @@ class ListController extends Controller
     {
         $em =$this->getDoctrine()->getManager();
         $games= $em->getRepository('MaciejBundle:FormBase')->findAll();
+    
       
-      
-       return $this->render ('MaciejBundle:List:list.html.twig', array('games' => $games));
+       return $this->render ('MaciejBundle:List:list.html.twig', ['games' => $games]);
     }
 }
 
