@@ -24,10 +24,10 @@
         <td> {{id.title}} </td> 
         <td> {{id.company}} </td>
         <td> {{id.releaseDate.format('Y-m-d')}} </td>
-        <td>  <input type="submit" value="Delete"
-                     class="btn btn-default pull-right"/> </td>
+        <td>  <a href="{{ path('maciej_list', {'wild' : id.id})}}">Delete</a> </td>
         </tr>
     {% endfor %}
+ 
     </table>
    
    
