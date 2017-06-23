@@ -3,19 +3,13 @@ maciej_switch:
     path:       /maciej
     defaults: { _controller: MaciejBundle:Switch:show }
     
-
-    
 maciej_first:
     path:       /maciej/first
     defaults: { _controller: MaciejBundle:First:show}
 
-       
-         
 maciej_second:
     path:       /maciej/second
     defaults: { _controller: MaciejBundle:Second:show}
-
-       
     
 maciej_form:
     path:     /maciej/form
@@ -25,8 +19,14 @@ maciej_list:
     path: /maciej/list
     defaults: { _controller: MaciejBundle:List:show}
    
+maciej_edit:
+    path: /maciej/edit
+    defaults: { _controller: MaciejBundle:Edit:edit}
+    
 maciej_submit:
     path:   /maciej/{wild}
     defaults: { _controller: MaciejBundle:Form:submit}
+  
+ 
 
     

@@ -21,7 +21,7 @@ class ListController extends Controller
         $request->getPathInfo();
         $number = $request->get('wild');
         
-        if (!empty($number))
+        if (!empty($number) && !empty($delete = $em->getRepository('MaciejBundle:FormBase')->findOneById($number)))
         {$delete = $em->getRepository('MaciejBundle:FormBase')->findOneById($number);
         $em->remove($delete);
         $em->flush();

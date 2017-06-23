@@ -30,7 +30,7 @@ class FormController extends Controller
           $em->persist($formBase);
            $em->flush();
            
-           $title= $formBase->getTitle();
+           
                    
            return $this->redirect($this->generateURL('maciej_submit', array('wild' => $formBase->getTitle())));
            

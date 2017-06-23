@@ -25,6 +25,7 @@
         <td> {{id.company}} </td>
         <td> {{id.releaseDate.format('Y-m-d')}} </td>
         <td>  <a href="{{ path('maciej_list', {'wild' : id.id})}}">Delete</a> </td>
+        <td>  <a href="{{ path('maciej_edit', {'wild' : id.id})}}">Edit</a> </td>
         </tr>
     {% endfor %}
  
