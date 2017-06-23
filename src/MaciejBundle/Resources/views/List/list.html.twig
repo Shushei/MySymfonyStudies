@@ -1,6 +1,6 @@
 {% extends 'MaciejBundle:Switch:Switch.html.twig' %}
 
-{% block title %}Pierwsza{% endblock %}
+{% block title %}List{% endblock %}
 {% block sidebar %}
                 <ul>
                     <li> <b><a href="{{ path('maciej_first' )}}">First</a></b></li>
@@ -10,4 +10,9 @@
                 </ul>
             {% endblock %}
     
-{% block body %} {{ title }} {% endblock %}    
+{% block body %} 
+    {%for id in games %}
+     
+    {% endfor %}
+    {{ dump(games) }}
+{% endblock %}  {# empty Twig template #}
