@@ -1,14 +1,9 @@
 
 {% extends 'MaciejBundle:Switch:Switch.html.twig' %}
 
+{% set active = 'second'%}
+
 {% block title %}Second Page{% endblock %}
-{% block sidebar %}
-                <ul>
-                    <li> <a href="{{ path('maciej_first')}}">First</a></li>
-                    <li> <b><a href="{{ path('maciej_second')}}">Second</a></b></li>
-                    <li> <a href="{{ path('maciej_form')}}">Form</a></li>
-                     <li> <a href="{{ path('maciej_list')}}">List of Games</a></li>
-                </ul>
-            {% endblock %}
+
     
 {% block body %} Second Page {% endblock %}    

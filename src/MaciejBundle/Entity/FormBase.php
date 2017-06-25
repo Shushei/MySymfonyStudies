@@ -12,6 +12,14 @@ use Symfony\Component\Validator\Constraints as Assert;
      */
 class FormBase 
 {
+    
+    public function __construct()
+    {
+        $this->title = 'Set Title';
+        $this->company = 'Set Company';
+        $this->releaseDate = new \DateTime('yesterday');
+    }
+    
     /**
      * @ORM\Column( type="integer")
      * @ORM\Id
