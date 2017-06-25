@@ -2,8 +2,8 @@
 
 namespace MaciejBundle\Controller;
 
-use MaciejBundle\Entity\FormBase;
-use MaciejBundle\Form\FormType;
+use MaciejBundle\Entity\Games;
+use MaciejBundle\Form\GamesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -12,17 +12,18 @@ class FormController extends Controller
 
     public function showAction(Request $request)
     {
-        $formBase = new FormBase();
+        $game = new Games();
 
-        $form = $this->createForm(FormType::class, $formBase);
+        $form = $this->createForm(GamesType::class, $game);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($formBase);
+            $em->persist($game);
             $em->flush();
+            $games = $em->getRepository('MaciejBundle:Games')->findAll();
 
-            return $this->redirect($this->generateURL('maciej_submit', array('wild' => $formBase->getTitle())));
+             return $this->redirectToRoute('maciej_list', ['games' => $games]);
         }
 
         return $this->render('MaciejBundle:Form:form.html.twig', array('form' => $form->createView(),));
@@ -32,8 +33,8 @@ class FormController extends Controller
     {
         $number = $request->get('wild');
         $em = $this->getDoctrine()->getManager();
-        $changed = $em->getRepository('MaciejBundle:FormBase')->find($number);
-        $form = $this->createForm(FormType::class, $changed);
+        $changed = $em->getRepository('MaciejBundle:Games')->find($number);
+        $form = $this->createForm(GamesType::class, $changed);
 
         $form->handleRequest($request);
 

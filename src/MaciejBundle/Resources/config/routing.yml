@@ -1,6 +1,6 @@
 maciej_switch:
-    path:       /maciej
-    defaults: { _controller: MaciejBundle:Default:show }
+   path: /maciej
+   defaults: { _controller: MaciejBundle:Default:show}
     
 maciej_first:
     path:       /maciej/first
@@ -12,19 +12,17 @@ maciej_second:
     
 maciej_form:
     path:     /maciej/form
-    defaults: { _controller: MaciejBundle:Form:show}
+    defaults: { _controller: MaciejBundle:Games:show}
     
 maciej_list:
     path: /maciej/list
-    defaults: { _controller: MaciejBundle:List:show}
+    defaults: { _controller: MaciejBundle:Games:list}
    
 maciej_edit:
     path: /maciej/edit
-    defaults: { _controller: MaciejBundle:Edit:edit}
+    defaults: { _controller: MaciejBundle:Games:edit}
     
-maciej_submit:
-    path:   /maciej/{wild}
-    defaults: { _controller: MaciejBundle:Form:submit}
+
   
  
 
