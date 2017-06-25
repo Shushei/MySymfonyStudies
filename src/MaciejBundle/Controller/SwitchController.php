@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class SwitchController extends Controller
 {
-    function switchAction()
+    function showAction()
     {
         return $this->render('MaciejBundle:Switch:Switch.html.twig');
        

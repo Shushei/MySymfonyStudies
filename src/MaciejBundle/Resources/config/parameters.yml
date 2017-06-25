@@ -1,0 +1,7 @@
+## YAML Template.
+parameters:
+    database_host: localhost
+    database_name: game
+    database_user: root@localhost
+    database_password: 'root'
+---

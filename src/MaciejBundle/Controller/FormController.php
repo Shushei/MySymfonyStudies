@@ -2,32 +2,57 @@
 
 namespace MaciejBundle\Controller;
 
-use MaciejBundle\Controller\FormBaseController;
+use MaciejBundle\Entity\FormBase;
+use MaciejBundle\Form\FormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Doctrine\ORM\EntityManagerInterface;
+
+
 
 class FormController extends Controller
 {
-    public function FormAction(Request $request)
+    public function showAction(Request $request)
     {
-        $company = new FormBaseController();
-        $company->setCompany('Blizzard');
-        $company->setTitle('World of Warcraft');
-        $company->setReleaseDate(new \DateTime('yesterday'));
-        
-        $form = $this->createFormBuilder($company)
-                ->add('Company', TextType::class)
-                ->add('Title', TextType::class)
-                ->add('releaseDate', DateType::class)
-                ->add('save', SubmitType::class, array('label' => 'Create Post'))
-                ->getForm();
-              
+       $formBase = new FormBase();
+       $formBase->setCompany('Company Name');
+       $formBase->setTitle('Game Title');
+       $formBase->setReleaseDate(new \DateTime('yesterday'));
+               
+               
+       $form =$this->createForm(FormType::class, $formBase);
+       
+       $form->handleRequest($request);
+       
+       if ($form->isSubmitted() && $form->isValid())
+       {
+           $em = $this->getDoctrine()->getManager();
+          $em->persist($formBase);
+           $em->flush();
+           
+           
+                   
+           return $this->redirect($this->generateURL('maciej_submit', array('wild' => $formBase->getTitle())));
+           
+       }
+      
         
             return $this->render('MaciejBundle:Form:form.html.twig', array('form' =>$form->createView(),));
-    }
+   
+        }
+        public function submitAction()
+        {
+         
+            
+          
+            
+            return $this->render('MaciejBundle:Submit:Submit.html.twig'
+                    /*, array('title' => $title,)
+             */
+              );
+             
+             
+        }
         
 }
 /* 

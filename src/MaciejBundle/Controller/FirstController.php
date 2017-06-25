@@ -6,10 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class FirstController extends Controller
 {
+    
+    
     public function showAction()
     {
+        
+         $title='Pierwsza'; 
       
-        return $this->render('MaciejBundle:First:First.html.twig');
+        return $this->render('MaciejBundle:First:First.html.twig', array('title' =>$title));
     }
 }
 

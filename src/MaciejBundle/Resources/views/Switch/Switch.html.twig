@@ -11,9 +11,10 @@
         <div id="sidebar">
             {% block sidebar %}
                 <ul>
-                    <li> <a href="http://shushei.site/app_dev.php/maciej/first">First</a></li>
-                    <li> <a href="http://shushei.site/app_dev.php/maciej/second">Second</a></li>
-                    <li> <a href="http://shushei.site/app_dev.php/maciej/form">Form</a></li>
+                    <li> <a href="{{ path('maciej_first')}}">First</a></li>
+                    <li> <a href="{{ path('maciej_second')}}">Second</a></li>
+                    <li> <a href="{{ path('maciej_form')}}">Form</a></li>
+                     <li> <a href="{{ path('maciej_list')}}">List of Games</a></li>
                 </ul>
             {% endblock %}
         </div>
