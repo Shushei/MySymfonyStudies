@@ -1,6 +1,6 @@
 maciej_switch:
     path:       /maciej
-    defaults: { _controller: MaciejBundle:Switch:show }
+    defaults: { _controller: MaciejBundle:Default:show }
     
 maciej_first:
     path:       /maciej/first
