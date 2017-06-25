@@ -1,14 +1,21 @@
 <?php
 
+
+
 namespace MaciejBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+
+
 class DefaultController extends Controller
 {
-    
-    public function indexAction()
+    function showAction()
     {
-        return $this->render('MaciejBundle:Switch:Switch.html.twig' );
+        return $this->render('MaciejBundle:Default:Default.html.twig');
+       
+  
+        
+     
     }
 }

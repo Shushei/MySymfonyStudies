@@ -1,0 +1,30 @@
+{# empty Twig template #}
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Test Application{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('/bundles/maciej/css/style.css') }}">
+
+    </head>
+    <body>
+        <div id="sidebar">
+            {% block sidebar %}
+                <ul id="mainmenu">
+                    <li {% if active is defined and active == 'first' %}class="active" {% endif %}> <a href="{{ path('maciej_first')}}">First</a></li>
+                    <li {% if active is defined and active == 'second' %}class="active" {% endif %}> <a href="{{ path('maciej_second')}}">Second</a></li>
+                    <li {% if active is defined and active == 'Form' %}class="active" {% endif %}> <a href="{{ path('maciej_form')}}">Form</a></li>
+                    <li {% if active is defined and active == 'List of Games' %}class="active" {% endif %}> <a href="{{ path('maciej_list')}}">List of Games</a></li>
+                </ul>
+            {% endblock %}
+        </div>
+
+        <div id="content">
+        {% block body %}{% endblock %}
+    </div>
+</body>
+</html>     
