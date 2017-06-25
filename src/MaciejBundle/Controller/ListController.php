@@ -2,10 +2,7 @@
 
 namespace MaciejBundle\Controller;
 
-use MaciejBundle\Entity\FormBase;
-use Symfony\Component\HttpFoundation\Response;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Common\Persistence\ManagerRegistry;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -22,7 +19,8 @@ class ListController extends Controller
         $number = $request->get('wild');
         
         if (!empty($number) && !empty($delete = $em->getRepository('MaciejBundle:FormBase')->findOneById($number)))
-        {$delete = $em->getRepository('MaciejBundle:FormBase')->findOneById($number);
+        {
+        $delete = $em->getRepository('MaciejBundle:FormBase')->findOneById($number);
         $em->remove($delete);
         $em->flush();
         $games= $em->getRepository('MaciejBundle:FormBase')->findAll();
