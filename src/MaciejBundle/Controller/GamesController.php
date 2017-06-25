@@ -7,7 +7,7 @@ use MaciejBundle\Form\GamesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class FormController extends Controller
+class GamesController extends Controller
 {
 
     public function showAction(Request $request)
@@ -23,7 +23,7 @@ class FormController extends Controller
             $em->flush();
             $games = $em->getRepository('MaciejBundle:Games')->findAll();
 
-             return $this->redirectToRoute('maciej_list', ['games' => $games]);
+            return $this->redirectToRoute('maciej_list', ['games' => $games]);
         }
 
         return $this->render('MaciejBundle:Form:form.html.twig', array('form' => $form->createView(),));
@@ -48,19 +48,19 @@ class FormController extends Controller
 
         return $this->render('MaciejBundle:Form:edit.html.twig', array('form' => $form->createView(),));
     }
-    
+
     public function listAction(Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
-        $games = $em->getRepository('MaciejBundle:FormBase')->findAll();
+        $games = $em->getRepository('MaciejBundle:Games')->findAll();
         $number = $request->get('wild');
 
-        if (!empty($number) && !empty($delete = $em->getRepository('MaciejBundle:FormBase')->findOneById($number))) {
-            $delete = $em->getRepository('MaciejBundle:FormBase')->find($number);
+        if (!empty($number) && !empty($delete = $em->getRepository('MaciejBundle:Games')->findOneById($number))) {
+            $delete = $em->getRepository('MaciejBundle:Games')->find($number);
             $em->remove($delete);
             $em->flush();
-            $games = $em->getRepository('MaciejBundle:FormBase')->findAll();
+            $games = $em->getRepository('MaciejBundle:Games')->findAll();
             return $this->render('MaciejBundle:Form:list.html.twig', ['games' => $games]);
         }
 

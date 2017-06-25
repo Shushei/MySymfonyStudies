@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
      * @ORM\Entity
      * @ORM\Table(name="game")
      */
-class FormBase 
+class Games 
 {
     
     public function __construct()
