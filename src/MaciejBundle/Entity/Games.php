@@ -34,7 +34,7 @@ class Games
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
-     * @ORM\ManyToOne(targetEntity="Companies", inversedBy="games")
+     * @ORM\ManyToOne(targetEntity="Companies")
      * @ORM\JoinColumn(name="company", referencedColumnName="company")
      */
     protected $company;

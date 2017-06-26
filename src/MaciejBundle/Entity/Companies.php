@@ -5,7 +5,7 @@ namespace MaciejBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * @ORM\Entity
@@ -27,14 +27,7 @@ class Companies
      * @Assert\NotBlank()
      */
     protected $company;
-    /**
-     *@ORM\OneToMany(targetEntity="Games", mappedBy="company")
-     */
-    private $games;
-    public function __construct()
-    {
-        $this->games = new ArrayCollection();
-    }
+   
 
     /**
      * @ORM\Column(type="date")
