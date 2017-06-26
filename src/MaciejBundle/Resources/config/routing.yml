@@ -2,24 +2,32 @@ maciej_switch:
    path: /maciej
    defaults: { _controller: MaciejBundle:Default:show}
     
-maciej_first:
-    path:       /maciej/first
-    defaults: { _controller: MaciejBundle:First:show}
+maciej_companyform:
+    path:       /maciej/companyform
+    defaults: { _controller: MaciejBundle:Companies:form}
 
-maciej_second:
-    path:       /maciej/second
-    defaults: { _controller: MaciejBundle:Second:show}
+maciej_companylist:
+    path:       /maciej/companylist
+    defaults: { _controller: MaciejBundle:Companies:list}
     
-maciej_form:
-    path:     /maciej/form
+maciej_companyedit:
+    path:  /maciej/companyedit
+    defaults: { _controller: MaciejBundle:Companies:edit}
+    
+maciej_companydelete:
+    path: /maciej/companydelete
+    defaults: { _controller: MaciejBundle:Companies:delete}
+    
+maciej_gamesform:
+    path:     /maciej/gamesform
     defaults: { _controller: MaciejBundle:Games:show}
     
-maciej_list:
-    path: /maciej/list
+maciej_gameslist:
+    path: /maciej/gameslist
     defaults: { _controller: MaciejBundle:Games:list}
    
-maciej_edit:
-    path: /maciej/edit
+maciej_gamesedit:
+    path: /maciej/gamesedit
     defaults: { _controller: MaciejBundle:Games:edit}
     
 

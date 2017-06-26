@@ -2,7 +2,7 @@
 
 namespace MaciejBundle\Form;
 
-use MaciejBundle\Entity\Games;
+use MaciejBundle\Entity\Companies;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -10,27 +10,29 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormInterface;
 
-class GamesType extends AbstractType
+class CompaniesType extends AbstractType
 {
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('Company', TextType::class, array(
+                ->add('company', TextType::class, array(
                     'required' => true,
-                    'label' => 'Company'
                 ))
-                ->add('Title', TextType::class, array(
+                ->add('founded', DateType::class, array(
                 ))
-                ->add('releaseDate', DateType::class, array('widget' => 'single_text'));
+                ->add('ownername', TextType::class, array(
+                ))
+                ->add('ownersurname', TextType::class, array(
+        ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Games::class,
+            'data_class' => Companies::class,
             'emtpy_data' => function (FormInterface $form) {
-                return new Games($form->get('Company')->getData());
+                return new Companies($form->get('Company')->getData());
             },
         ));
     }

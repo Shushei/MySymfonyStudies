@@ -1,0 +1,16 @@
+{# empty Twig template #}
+{% extends 'MaciejBundle:Default:Default.html.twig' %}
+
+{% block title %}Form{% endblock %}
+
+    
+{% block body %} 
+
+{{ form_start(form) }}
+{{ form_widget(form) }}
+        <input type="submit" value="Edit"
+               class="btn btn-default pull-right"/>
+{{ form_end(form) }}
+
+
+{% endblock %}  

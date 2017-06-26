@@ -1,5 +1,5 @@
+{# empty Twig template #}
 {% extends 'MaciejBundle:Default:Default.html.twig' %}
-{% set active = 'Form'%}
 
 {% block title %}Form{% endblock %}
 
@@ -8,10 +8,9 @@
 
 {{ form_start(form) }}
 {{ form_widget(form) }}
-        <input type="submit" value="Create"
+        <input type="submit" value="Edit"
                class="btn btn-default pull-right"/>
 {{ form_end(form) }}
 
 
-{% endblock %}    
-
+{% endblock %}  
