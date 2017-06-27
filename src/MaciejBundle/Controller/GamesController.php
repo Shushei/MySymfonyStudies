@@ -23,10 +23,10 @@ class GamesController extends Controller
             $em->flush();
             $games = $em->getRepository('MaciejBundle:Games')->findAll();
 
-            return $this->redirectToRoute('maciej_list', ['games' => $games]);
+            return $this->redirectToRoute('maciej_gameslist', ['games' => $games]);
         }
 
-        return $this->render('MaciejBundle:Form:form.html.twig', array('form' => $form->createView(),));
+        return $this->render('MaciejBundle:Games:form.html.twig', array('form' => $form->createView(),));
     }
 
     public function editAction(Request $request)
@@ -43,10 +43,10 @@ class GamesController extends Controller
             $em->persist($changed);
             $em->flush();
 
-            return $this->redirectToRoute('maciej_list');
+            return $this->redirectToRoute('maciej_gameslist');
         }
 
-        return $this->render('MaciejBundle:Form:edit.html.twig', array('form' => $form->createView(),));
+        return $this->render('MaciejBundle:Games:edit.html.twig', array('form' => $form->createView(),));
     }
 
     public function listAction(Request $request)
@@ -61,10 +61,10 @@ class GamesController extends Controller
             $em->remove($delete);
             $em->flush();
             $games = $em->getRepository('MaciejBundle:Games')->findAll();
-            return $this->render('MaciejBundle:Form:list.html.twig', ['games' => $games]);
+            return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $games]);
         }
 
-        return $this->render('MaciejBundle:Form:list.html.twig', ['games' => $games]);
+        return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $games]);
     }
 
 }
