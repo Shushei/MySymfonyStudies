@@ -61,13 +61,13 @@ class GamesController extends Controller
             $em->remove($delete);
             $em->flush();
             $games = $em->getRepository('MaciejBundle:Games')->findAll();
-            $companyname = $games->getCompanies()->getCompany();
+           
             return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $games, 'company' => $companyname]
             );
         }
         
          // Tu próbowałem wczytać tak jak jest w guidach ale nie działa. 
-        $company = $games->getCompanies()->getcompany();
+        
         return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $games]);
     }
 
