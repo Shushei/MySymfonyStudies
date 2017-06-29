@@ -6,6 +6,7 @@ use MaciejBundle\Entity\Games;
 use MaciejBundle\Form\GamesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+new Symfony\Component\HttpFoundation\Session\Session;
 
 class GamesController extends Controller
 {
