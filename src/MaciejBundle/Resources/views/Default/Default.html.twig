@@ -14,12 +14,21 @@
     <body>
         <div id="sidebar">
             {% block sidebar %}
-                <ul id="mainmenu">
-                    <li {% if active is defined and active == 'CompanyForm' %}class="active" {% endif %}> <a href="{{ path('maciej_companyform')}}">Company Form</a></li>
-                    <li {% if active is defined and active == 'CompanyList' %}class="active" {% endif %}> <a href="{{ path('maciej_companylist')}}">Company List</a></li>
-                    <li {% if active is defined and active == 'GamesForm' %}class="active" {% endif %}> <a href="{{ path('maciej_gamesform')}}">Games Form</a></li>
-                    <li {% if active is defined and active == 'GamesList' %}class="active" {% endif %}> <a href="{{ path('maciej_gameslist')}}">Games List</a></li>
-                </ul>
+                <div class="dropdown">
+                    <button class="dropbtn">Companies</button>
+                    <div class="dropdown-content">
+                        <a href="{{ path('maciej_companyform')}}">Company Form</a>
+                        <a href="{{ path('maciej_companylist')}}">Company List</a>
+                    </div>
+                </div>
+                <div class="dropdown2">
+                    <button class="dropbtn">Games</button>
+                    <div class="dropdown-content">
+                        <a href="{{ path('maciej_gamesform')}}">Games Form</a>
+                        <a href="{{ path('maciej_gameslist')}}">Games List</a>
+                    </div>
+                </div>
+                
             {% endblock %}
         </div>
 

@@ -23,18 +23,22 @@ class Companies
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="Games", mappedBy="company")
+     * 
+     */
+    private $games;
+
+    public function __construct()
+    {
+        $this->games = new ArrayCollection();
+        
+    }
+
+    /**
      * @ORM\Column(type="string", unique=true)
      * @Assert\NotBlank()
      */
     protected $company;
-    /**
-     *@ORM\OneToMany(targetEntity="Games", mappedBy="company")
-     */
-    private $games;
-    public function __construct()
-    {
-        $this->games = new ArrayCollection();
-    }
 
     /**
      * @ORM\Column(type="date")
@@ -100,4 +104,38 @@ class Companies
         return $this->ownersurname = $ownersurname;
     }
 
+
+    /**
+     * Add game
+     *
+     * @param \MaciejBundle\Entity\Games $game
+     *
+     * @return Companies
+     */
+    public function addGame(\MaciejBundle\Entity\Games $game)
+    {
+        $this->games[] = $game;
+
+        return $this;
+    }
+
+    /**
+     * Remove game
+     *
+     * @param \MaciejBundle\Entity\Games $game
+     */
+    public function removeGame(\MaciejBundle\Entity\Games $game)
+    {
+        $this->games->removeElement($game);
+    }
+
+    /**
+     * Get games
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGames()
+    {
+        return $this->games;
+    }
 }
