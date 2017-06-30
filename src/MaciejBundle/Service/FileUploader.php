@@ -9,7 +9,7 @@ class FileUploader
 
     private $targetDir;
 
-    public function __contruct($targetDir)
+    public function __construct($targetDir)
     {
         $this->targetDir = $targetDir;
     }

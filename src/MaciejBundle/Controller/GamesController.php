@@ -6,20 +6,23 @@ use MaciejBundle\Entity\Games;
 use MaciejBundle\Form\GamesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use MaciejBundle\Service\FileUploader;
 
 
 class GamesController extends Controller
 {
 
-    public function showAction(Request $request)
+    public function showAction(Request $request )
     {
         $game = new Games();
+       
 
         $form = $this->createForm(GamesType::class, $game);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
             $em->persist($game);
             $em->flush();
             $games = $em->getRepository('MaciejBundle:Games')->findAll();

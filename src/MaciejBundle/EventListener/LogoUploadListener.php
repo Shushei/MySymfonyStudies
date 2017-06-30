@@ -32,9 +32,7 @@ class LogoUploadListener
         }
         $file = $entity->getLogo();
         
-        if (!file instanceof UploadedFile) {
-            return;
-        }
+      
         $fileName = $this->uploader->upload($file);
         $entity->setLogo($fileName);
     }
@@ -42,11 +40,11 @@ class LogoUploadListener
     {
         $entity = $args->getEntity();
         
-        if (!$entity instanceof Games) {
+        if (!($entity instanceof Games)) {
             return;
         }
-        if ($fileName = $entity->getBrochure()) {
-            $entity->setBrochure(new File($this->uploader->getTargetDir().'/'.$fileName));
+        if ($fileName = $entity->getLogo()) {
+            $entity->setLogo(new File($this->uploader->getTargetDir().'/'.$fileName));
         }
     }
             
