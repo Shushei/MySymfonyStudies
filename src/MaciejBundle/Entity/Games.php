@@ -37,7 +37,25 @@ class Games
      * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      */
     protected $company;
-
+/**
+ *@ORM\Column(type="string")
+ * @assert\NotBlank(message="Please, upload logo.")
+ * @Assert\File
+ * 
+ */
+   private $logo;
+   
+   public function getLogo()
+   {
+       return $this->logo;
+       
+   }
+   public function setLogo($logo)
+   {
+       $this->logo = $logo;
+       return $this;
+   }
+   
    
 
     /**

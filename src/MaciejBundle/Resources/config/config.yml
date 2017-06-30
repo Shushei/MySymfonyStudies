@@ -5,3 +5,17 @@ doctrine:
         default_table_options:
             charset: utf8mb4
             collate: utf8mb4_unicode_ci
+            
+parameters:
+    logo_directory: '%kernel.project_dir%/web/uploads/logo'
+    
+services:
+    MaciejBundle\Service\FileUploader:
+        arguments:
+            $targetDir: '%logo_directory%'
+            
+    MaciejBundle\EventListener\LogoUploadListener:
+        tags:
+            - {name: doctrine.event_listener, event: prePersist }
+            - {name: doctrine.event_listener, event: preUpdate }
+            - {name: doctrine.event_listener, event: postLoad }

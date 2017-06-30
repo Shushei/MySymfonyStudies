@@ -12,6 +12,7 @@
             <td>Title</td>
             <td>Company name</td>
             <td> Date </td>
+            <td> Logo </td>
         </tr>
     {% for id in games %}
         <tr>
@@ -23,6 +24,7 @@
        
       
         <td> {{id.releaseDate.format('Y-m-d')}} </td>
+        <td> <img src="{{asset('uploads/logo/' ~ id.logo)}}"> </td>
         <td>  <a href="{{ path('maciej_gameslist', {'wild' : id.id})}}">Delete</a> </td>
         <td>  <a href="{{ path('maciej_gamesedit', {'wild' : id.id})}}">Edit</a> </td>
         </tr>
