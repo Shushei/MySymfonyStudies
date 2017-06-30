@@ -63,7 +63,7 @@ class GamesController extends Controller
             $em->flush();
             $games = $em->getRepository('MaciejBundle:Games')->findAll();
            
-            return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $games, 'company' => $companyname]
+            return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $games]
             );
         }
         

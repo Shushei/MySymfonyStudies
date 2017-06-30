@@ -45,7 +45,7 @@ class LogoUploadListener
         if (!$entity instanceof Games) {
             return;
         }
-        if ($fileName == $entity->getBrochure()) {
+        if ($fileName = $entity->getBrochure()) {
             $entity->setBrochure(new File($this->uploader->getTargetDir().'/'.$fileName));
         }
     }
