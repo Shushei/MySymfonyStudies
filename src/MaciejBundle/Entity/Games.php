@@ -12,12 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Games
 {
 
-    public function __construct()
-    {
-        $this->title = 'Set Title';
-        $this->company = 'Set Company';
-        $this->releaseDate = new \DateTime('yesterday');
-    }
+   
 
     /**
      * @ORM\Column( type="integer")
@@ -31,6 +26,17 @@ class Games
      * @Assert\NotBlank()
      */
     protected $title;
+    /**
+     * @ORM\OneToMany(targetEntity="GameImage", mappedBy="game")
+     * 
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+        
+    }
 
     /**
      * @ORM\ManyToOne(targetEntity="Companies", inversedBy="games")
@@ -105,4 +111,38 @@ class Games
         return $this->id;
     }
 
+
+    /**
+     * Add image
+     *
+     * @param \MaciejBundle\Entity\GameImage $image
+     *
+     * @return Games
+     */
+    public function addImage(\MaciejBundle\Entity\GameImage $image)
+    {
+        $this->images[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \MaciejBundle\Entity\GameImage $image
+     */
+    public function removeImage(\MaciejBundle\Entity\GameImage $image)
+    {
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
 }
