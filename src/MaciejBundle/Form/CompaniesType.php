@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class CompaniesType extends AbstractType
 {
@@ -16,15 +17,14 @@ class CompaniesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('company', TextType::class, array(
-                    'required' => true,
-                ))
-                ->add('founded', DateType::class, array(
-                ))
-                ->add('ownername', TextType::class, array(
-                ))
-                ->add('ownersurname', TextType::class, array(
-        ));
+        ->add('company', TextType::class, array(
+        'required' => true,
+        ))
+        ->add('founded', DateType::class, array(        ))
+        ->add('ownername', TextType::class, array(        ))
+        ->add('ownersurname', TextType::class, array(        ))
+        ->add('clogo', FileType::class);
+        
     }
 
     public function configureOptions(OptionsResolver $resolver)

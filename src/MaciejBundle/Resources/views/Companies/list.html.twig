@@ -21,6 +21,9 @@
                 <td> {{company.ownername}} </td>
                 <td> {{company.ownersurname}} </td>
                 <td> {{company.founded.format('Y-m-d')}} </td>
+                <td>{% if not company.clogo is empty %} <img src="{{asset('/uploads/companies/' ~ company.clogo.filename)}}"> 
+        {% endif %}
+        </td>
                 <td>  <a href="{{ path('maciej_companydelete', {'wild' : company.id})}}">Delete</a> </td>
                 <td>  <a href="{{ path('maciej_companyedit', {'wild' : company.id})}}">Edit</a> </td>
             </tr>

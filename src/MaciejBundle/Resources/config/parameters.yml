@@ -4,4 +4,5 @@ parameters:
     database_name: game
     database_user: root@localhost
     database_password: ro
+    
 ---
