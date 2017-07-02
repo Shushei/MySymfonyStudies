@@ -72,7 +72,7 @@ class GamesController extends Controller
             );
         }
 
-        // Tu próbowałem wczytać tak jak jest w guidach ale nie działa. 
+        
 
         return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $games]);
     }
