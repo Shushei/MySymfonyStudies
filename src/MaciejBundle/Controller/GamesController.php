@@ -24,9 +24,9 @@ class GamesController extends Controller
 
             $em->persist($game);
             $em->flush();
-            $games = $em->getRepository('MaciejBundle:Games')->findAll();
+            
 
-            return $this->redirectToRoute('maciej_gameslist', ['games' => $games]);
+            return $this->redirectToRoute('maciej_gameslist');
         }
 
         return $this->render('MaciejBundle:Games:form.html.twig', array('form' => $form->createView(),));

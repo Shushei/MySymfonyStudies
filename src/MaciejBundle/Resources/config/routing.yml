@@ -18,6 +18,10 @@ maciej_companydelete:
     path: /maciej/companydelete/{wild}
     defaults: { _controller: MaciejBundle:Companies:delete}
     
+maciej_gamesdeleteimage:
+    path: /maciej/gamesdit/delimg/{wild}
+    defaults: { _controller: MaciejBundle:Companies:delimg}
+    
 maciej_gamesform:
     path:     /maciej/gamesform
     defaults: { _controller: MaciejBundle:Games:show}

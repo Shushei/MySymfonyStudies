@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use MaciejBundle\Entity\Games;
+use MaciejBundle\Entity\Companies;
 use MaciejBundle\Service\FileUploader;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Filesystem\Filesystem;
@@ -42,8 +43,9 @@ class LogoUploadListener
         }
         if ($entity instanceof Companies && $file = $entity->getClogo() instanceof UploadedFile) {
             $this->uploader->setVar('companies');
+            $file = $entity->getClogo();
             $fileName = $this->uploader->upload($file);
-            $entity->setLogo($fileName);
+            $entity->setClogo($fileName);
         }
 
         return;
@@ -58,7 +60,7 @@ class LogoUploadListener
         }
         if ($entity instanceof Companies && $fileName = $entity->getClogo()) {
             $this->uploader->setVar('companies');
-            $entity->setLogo(new File($this->uploader->getTargetDirCompany() . '/' . $fileName));
+            $entity->setClogo(new File($this->uploader->getTargetDirCompany() . '/' . $fileName));
         }
             return;
                 

@@ -58,6 +58,25 @@ class Companies
      * @Assert\NotBlank()
      */
     protected $ownersurname;
+    
+    /**
+ *@ORM\Column(type="string")
+ * @assert\NotBlank(message="Please, upload logo.")
+ * @Assert\File
+ * 
+ */
+   private $clogo;
+   
+   public function getClogo()
+   {
+       return $this->clogo;
+       
+   }
+   public function setClogo($clogo)
+   {
+       $this->clogo = $clogo;
+       return $this;
+   }
 
     public function getId()
     {

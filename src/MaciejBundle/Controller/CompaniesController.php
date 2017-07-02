@@ -6,6 +6,7 @@ use MaciejBundle\Entity\Companies;
 use MaciejBundle\Form\CompaniesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use MaciejBundle\Service\FileUploader;
 
 class CompaniesController extends Controller
 {
@@ -20,9 +21,9 @@ class CompaniesController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($company);
             $em->flush();
-            $companies = $em->getRepository('MaciejBundle:Companies')->findAll();
+            
 
-            return $this->render('MaciejBundle:Companies:list.html.twig', ['companies' => $companies]);
+            return $this->redirectToRoute('maciej_companylist');
         }
         return $this->render('MaciejBundle:Companies:form.html.twig', array('form' => $form->createView()));
     }
@@ -40,6 +41,11 @@ class CompaniesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $number = $request->get('wild');
         $delete = $em->getRepository('MaciejBundle:Companies')->find($number);
+         $fileUploader = $this->get(FileUploader::class);
+            if (!empty($fileName = $delete->getClogo())) {
+                $fileName = $delete->getClogo();
+                $fileUploader->delete($fileName);
+            }
         $em->remove($delete);
         $em->flush();
 
@@ -60,7 +66,23 @@ class CompaniesController extends Controller
                     
                     return $this->redirectToRoute('maciej_companylist');
         }
-        return $this->render('MaciejBundle:Companies:edit.html.twig', array('form'=>$form->createView()));
+        return $this->render('MaciejBundle:Companies:edit.html.twig', array('form'=>$form->createView(), 'changed' => $change));
+    }
+    public function delimgAction(Request $request)
+    {
+        $fileUploader = $this->get(FileUploader::class);
+        $number = $request->get('wild');
+        $em = $this->getDoctrine()->getManager();
+        $delete = $em->getRepository('MaciejBundle:Companies')->find($number);
+        $fileName = $delete->getClogo();
+        $fileUploader->delete($fileName);
+
+
+        $delete->setClogo('');
+        $em->persist($delete);
+        $em->flush();
+        
+        return $this->redirectToRoute('maciej_companyedit', array('wild' => $number));
     }
 
 }
