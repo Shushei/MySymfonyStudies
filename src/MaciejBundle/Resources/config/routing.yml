@@ -11,11 +11,11 @@ maciej_companylist:
     defaults: { _controller: MaciejBundle:Companies:list}
     
 maciej_companyedit:
-    path:  /maciej/companyedit
+    path:  /maciej/companyedit/{wild}
     defaults: { _controller: MaciejBundle:Companies:edit}
     
 maciej_companydelete:
-    path: /maciej/companydelete
+    path: /maciej/companydelete/{wild}
     defaults: { _controller: MaciejBundle:Companies:delete}
     
 maciej_gamesform:
@@ -27,8 +27,12 @@ maciej_gameslist:
     defaults: { _controller: MaciejBundle:Games:list}
    
 maciej_gamesedit:
-    path: /maciej/gamesedit
+    path: /maciej/gamesedit/{wild}
     defaults: { _controller: MaciejBundle:Games:edit}
+    
+maciej_gamesdeleteimage:
+    path: /maciej/gamesdit/delimg/{wild}
+    defaults: { _controller: MaciejBundle:Games:delimg}
     
 
   

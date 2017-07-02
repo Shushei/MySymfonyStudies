@@ -6,7 +6,7 @@ use MaciejBundle\Entity\Games;
 use MaciejBundle\Form\GamesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
+use MaciejBundle\Service\FileUploader;
 
 class GamesController extends Controller
 {
@@ -15,11 +15,13 @@ class GamesController extends Controller
     {
         $game = new Games();
 
+
         $form = $this->createForm(GamesType::class, $game);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($game);
             $em->flush();
             $games = $em->getRepository('MaciejBundle:Games')->findAll();
@@ -47,7 +49,7 @@ class GamesController extends Controller
             return $this->redirectToRoute('maciej_gameslist');
         }
 
-        return $this->render('MaciejBundle:Games:edit.html.twig', array('form' => $form->createView(),));
+        return $this->render('MaciejBundle:Games:edit.html.twig', array('form' => $form->createView(), 'changed' => $changed));
     }
 
     public function listAction(Request $request)
@@ -59,17 +61,38 @@ class GamesController extends Controller
 
         if (!empty($number) && !empty($delete = $em->getRepository('MaciejBundle:Games')->findOneById($number))) {
             $delete = $em->getRepository('MaciejBundle:Games')->find($number);
+            $fileUploader = new FileUploader('uploads/logos');
+            $fileName = $delete->getLogo();
+            $fileUploader->delete($fileName);
             $em->remove($delete);
             $em->flush();
             $games = $em->getRepository('MaciejBundle:Games')->findAll();
-           
-            return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $games, 'company' => $companyname]
+
+            return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $games]
             );
         }
-        
-         // Tu próbowałem wczytać tak jak jest w guidach ale nie działa. 
-        
+
+        // Tu próbowałem wczytać tak jak jest w guidach ale nie działa. 
+
         return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $games]);
+    }
+
+    public function delimgAction(Request $request)
+    {
+        $fileUploader = new FileUploader('uploads/logos');
+        $number = $request->get('wild');
+        $em = $this->getDoctrine()->getManager();
+        $delete = $em->getRepository('MaciejBundle:Games')->find($number);
+        $fileName = $delete->getLogo();
+        $fileUploader->delete($fileName);
+
+
+        $delete->setLogo('');
+        $em->persist($delete);
+        $em->flush();
+
+
+        return $this->redirectToRoute('maciej_gamesedit', array('wild' => $number));
     }
 
 }
