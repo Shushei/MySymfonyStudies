@@ -8,6 +8,8 @@
 
 {{ form_start(form) }}
 {{ form_widget(form) }}
+       {% if not changed.logo is empty %} <img src="{{asset('/uploads/logos/' ~ changed.logo.filename)}}">
+        <a href="{{ path('maciej_gamesdeleteimage', {'wild' : changed.id})}}">Delete Image </a>{% endif %}
         <input type="submit" value="Edit"
                class="btn btn-default pull-right"/>
 {{ form_end(form) }}

@@ -3,6 +3,8 @@
 namespace MaciejBundle\Service;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Filesystem\Filesystem;
 
 class FileUploader
 {
@@ -24,6 +26,14 @@ class FileUploader
     public function getTargetDir()
     {
         return $this->targetDir;
+    }
+
+    public function delete($fileName)
+    {
+        $file = new File($fileName);
+        $filedelete = new Filesystem();
+        $filedelete->remove($file);
+                
     }
 
 }

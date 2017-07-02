@@ -7,6 +7,7 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 use MaciejBundle\Entity\Games;
 use MaciejBundle\Service\FileUploader;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Filesystem\Filesystem;
 
 class LogoUploadListener
 {
@@ -30,7 +31,11 @@ class LogoUploadListener
         if (!$entity instanceof Games){
             return;
         }
+       
         $file = $entity->getLogo();
+         if (!$file instanceof UploadedFile){
+            return;
+        }
         
       
         $fileName = $this->uploader->upload($file);
@@ -47,6 +52,7 @@ class LogoUploadListener
             $entity->setLogo(new File($this->uploader->getTargetDir().'/'.$fileName));
         }
     }
+    
             
 }
 
