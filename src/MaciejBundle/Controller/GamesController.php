@@ -61,25 +61,30 @@ class GamesController extends Controller
 
         if (!empty($number) && !empty($delete = $em->getRepository('MaciejBundle:Games')->findOneById($number))) {
             $delete = $em->getRepository('MaciejBundle:Games')->find($number);
-            $fileUploader = new FileUploader('uploads/logos');
-            $fileName = $delete->getLogo();
-            $fileUploader->delete($fileName);
+            $fileUploader = $this->get(FileUploader::class);
+            if (!empty($fileName = $delete->getLogo())) {
+                $fileUploader->delete($fileName);
+            }
+            foreach ($games as $game) {
+                $fileName = $game->getLogo()->getFilename();
+                $game->setLogo($fileName);
+            }
             $em->remove($delete);
             $em->flush();
-            $games = $em->getRepository('MaciejBundle:Games')->findAll();
+           
 
-            return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $games]
-            );
+            return $this->redirectToRoute('maciej_gameslist') ;
+           
         }
 
-        
+
 
         return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $games]);
     }
 
     public function delimgAction(Request $request)
     {
-        $fileUploader = new FileUploader('uploads/logos');
+        $fileUploader = $this->get(FileUploader::class);
         $number = $request->get('wild');
         $em = $this->getDoctrine()->getManager();
         $delete = $em->getRepository('MaciejBundle:Games')->find($number);

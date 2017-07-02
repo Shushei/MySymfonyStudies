@@ -8,7 +8,8 @@ doctrine:
             
 
     
-services:
+
     
-            
-    
+parameters:            
+    logo_directory: '%kernel.project_dir%/web/uploads/logos'
+    company_directory: '%kernel.project_dir%/web/uploads/companies'
