@@ -3,6 +3,7 @@
 namespace MaciejBundle\Controller;
 
 use MaciejBundle\Entity\Games;
+
 use MaciejBundle\Form\GamesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,17 +15,22 @@ class GamesController extends Controller
     public function showAction(Request $request)
     {
         $game = new Games();
-
+        
 
         $form = $this->createForm(GamesType::class, $game);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $number = $game->getCompany()->getId();
+            $company = $em->getRepository('MaciejBundle:Companies')->find($number);
+
+            $fileName = $company->getClogo()->getFilename();
+            $company->setClogo($fileName);
 
             $em->persist($game);
             $em->flush();
-            
+
 
             return $this->redirectToRoute('maciej_gameslist');
         }
@@ -42,6 +48,7 @@ class GamesController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
 
             $em->persist($changed);
             $em->flush();
@@ -71,10 +78,9 @@ class GamesController extends Controller
             }
             $em->remove($delete);
             $em->flush();
-           
 
-            return $this->redirectToRoute('maciej_gameslist') ;
-           
+
+            return $this->redirectToRoute('maciej_gameslist');
         }
 
 

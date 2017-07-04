@@ -20,9 +20,9 @@ class GameImage
     
     /**
      * @ORM\ManyToOne(targetEntity="Games", inversedBy="images")
-     * @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="title_id", referencedColumnName="id")
      */
-    protected $game;
+    protected $title;
     
     /**
      * @ORM\Column(type="string")
@@ -35,14 +35,14 @@ class GameImage
     {
         return $this->id;
     }
-    public function setGame($game)
+    public function setTitle($title)
     {
-       return $this->game = $game;
+       return $this->title = $title;
        
     }
-    public function getGame()
+    public function getTitle()
     {
-        return $this->game;
+        return $this->title;
     }
     public function setGameimage($gameimage)
     {

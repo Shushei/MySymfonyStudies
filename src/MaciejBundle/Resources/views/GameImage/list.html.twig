@@ -1,0 +1,28 @@
+{% extends 'MaciejBundle:Default:Default.html.twig' %}
+
+{% set active = 'GamesList'%}
+
+{% block title %}List{% endblock %}
+
+
+{% block body %} 
+    <table>
+
+        {% for game in games %}
+            <tr> 
+                <td>
+                    <a href="{{ path('maciej_gamesimagelist', {'wild' : game.title})}}">{{ game.title}}</a>  
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+        <b> {{ game1.title }} Gallery </b></br>
+    {%for image in images %}
+        {% if image.title == game1 %}
+            <img src="{{asset('/uploads/gameimages/' ~ image.gameimage.filename )}}">
+        {%endif%}
+      
+    {%endfor%}
+
+
+{% endblock %}  

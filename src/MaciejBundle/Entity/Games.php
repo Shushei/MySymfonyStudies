@@ -4,6 +4,7 @@ namespace MaciejBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -27,7 +28,7 @@ class Games
      */
     protected $title;
     /**
-     * @ORM\OneToMany(targetEntity="GameImage", mappedBy="game")
+     * @ORM\OneToMany(targetEntity="GameImage", mappedBy="title")
      * 
      */
     private $images;

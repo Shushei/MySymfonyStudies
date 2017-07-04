@@ -3,3 +3,4 @@ services:
         arguments:
             $targetDir:   '%logo_directory%'
             $targetDirCompany:   '%company_directory%'
+            $targetDirGameImage: '%gameimage_directory%'

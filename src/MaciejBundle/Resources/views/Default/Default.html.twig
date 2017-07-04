@@ -21,19 +21,29 @@
                         <a href="{{ path('maciej_companylist')}}">Company List</a>
                     </div>
                 </div>
-                <div class="dropdown2">
+                <div class="dropdown">
                     <button class="dropbtn">Games</button>
                     <div class="dropdown-content">
                         <a href="{{ path('maciej_gamesform')}}">Games Form</a>
                         <a href="{{ path('maciej_gameslist')}}">Games List</a>
                     </div>
                 </div>
-                
-            {% endblock %}
-        </div>
+                <div class="dropdown2">
+                    <button class="dropbtn">Games</button>
+                    <div class="dropdown-content">
+                        <a href="{{ path('maciej_gamesimageform')}}">Games Images Form</a>
 
-        <div id="content">
-        {% block body %}{% endblock %}
+                    </div>
+
+                </div>
+            {% block menu %}{% endblock %}
+
+
+        {% endblock %}
     </div>
+
+    <div id="content">
+    {% block body %}{% endblock %}
+</div>
 </body>
 </html>     

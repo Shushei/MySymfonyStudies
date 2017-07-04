@@ -7,9 +7,10 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use MaciejBundle\Entity\Games;
 use MaciejBundle\Entity\Companies;
+use MaciejBundle\Entity\GameImage;
 use MaciejBundle\Service\FileUploader;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Filesystem\Filesystem;
+
 
 class LogoUploadListener
 {
@@ -47,6 +48,12 @@ class LogoUploadListener
             $fileName = $this->uploader->upload($file);
             $entity->setClogo($fileName);
         }
+        if ($entity instanceof GameImage && $file = $entity->getGameimage() instanceof UploadedFile) {
+            $this->uploader->setVar('gameimage');
+            $file = $entity->getGameimage();
+            $fileName = $this->uploader->upload($file);
+            $entity->setGameimage($fileName);
+        }
 
         return;
     }
@@ -61,6 +68,10 @@ class LogoUploadListener
         if ($entity instanceof Companies && $fileName = $entity->getClogo()) {
             $this->uploader->setVar('companies');
             $entity->setClogo(new File($this->uploader->getTargetDirCompany() . '/' . $fileName));
+        }
+        if ($entity instanceof GameImage && $fileName = $entity->getGameimage()) {
+            $this->uploader->setVar('gameimage');
+            $entity->setGameimage(new File($this->uploader->getTargetDirGameImage() . '/' . $fileName));
         }
             return;
                 

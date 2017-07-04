@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
+
 class GamesType extends AbstractType
 {
 
@@ -24,7 +25,7 @@ class GamesType extends AbstractType
                     ))
                 ->add('Title', TextType::class, array(
                 ))
-                ->add('releaseDate', DateType::class, array('widget' => 'single_text'))
+                ->add('releaseDate', DateType::class)
                 ->add('logo', FileType::class);
     }
 
