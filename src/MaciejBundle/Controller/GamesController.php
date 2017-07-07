@@ -22,11 +22,7 @@ class GamesController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $number = $game->getCompany()->getId();
-            $company = $em->getRepository('MaciejBundle:Companies')->find($number);
-
-            $fileName = $company->getClogo()->getFilename();
-            $company->setClogo($fileName);
+            
 
             $em->persist($game);
             $em->flush();
@@ -69,15 +65,19 @@ class GamesController extends Controller
         if (!empty($number) && !empty($delete = $em->getRepository('MaciejBundle:Games')->findOneById($number))) {
             $delete = $em->getRepository('MaciejBundle:Games')->find($number);
             $fileUploader = $this->get(FileUploader::class);
-            if (!empty($fileName = $delete->getLogo())) {
-                $fileUploader->delete($fileName);
-            }
+            $fileName = $delete->getLogo();
+                
+            
             foreach ($games as $game) {
-                $fileName = $game->getLogo()->getFilename();
-                $game->setLogo($fileName);
+                $fileName1 = $game->getLogo()->getFilename();
+                $game->setLogo($fileName1);
             }
             $em->remove($delete);
             $em->flush();
+            $delete1 = $em->getRepository('MaciejBundle:Games')->find($number);
+            if (empty($delete1)){
+                $fileUploader->delete($fileName);
+            }
 
 
             return $this->redirectToRoute('maciej_gameslist');

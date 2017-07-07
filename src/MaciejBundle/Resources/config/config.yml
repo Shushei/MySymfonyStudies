@@ -10,7 +10,17 @@ doctrine:
     
 
     
-parameters:            
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: symfony
+    database_user: root
+    database_password: root
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 39c90ae652bada411eb7c74693fdb14eec8ce6b1           
     logo_directory: '%kernel.project_dir%/web/uploads/logos'
     company_directory: '%kernel.project_dir%/web/uploads/companies'
     gameimage_directory: '%kernel.project_dir%/web/uploads/gameimages'

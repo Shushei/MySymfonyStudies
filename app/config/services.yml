@@ -31,12 +31,4 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
-    MaciejBundle\Service\FileUploader:
-        arguments:
-            $targetDir:   '%logo_directory%'
-            
-    MaciejBundle\EventListener\LogoUploadListener:
-        tags:
-            - {name: doctrine.event_listener, event: prePersist }
-            - {name: doctrine.event_listener, event: preUpdate }
-            - {name: doctrine.event_listener, event: postLoad }
+   

@@ -62,17 +62,19 @@ class LogoUploadListener
     {
         $entity = $args->getEntity();
         if ($entity instanceof Games && $fileName = $entity->getLogo()) {
-            $this->uploader->setVar('games');
+            
             $entity->setLogo(new File($this->uploader->getTargetDir() . '/' . $fileName));
         }
         if ($entity instanceof Companies && $fileName = $entity->getClogo()) {
-            $this->uploader->setVar('companies');
+            
             $entity->setClogo(new File($this->uploader->getTargetDirCompany() . '/' . $fileName));
         }
         if ($entity instanceof GameImage && $fileName = $entity->getGameimage()) {
-            $this->uploader->setVar('gameimage');
+            
             $entity->setGameimage(new File($this->uploader->getTargetDirGameImage() . '/' . $fileName));
+            
         }
+            
             return;
                 
             

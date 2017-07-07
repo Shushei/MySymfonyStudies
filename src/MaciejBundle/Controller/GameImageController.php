@@ -7,6 +7,7 @@ use MaciejBundle\Form\GameImageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use MaciejBundle\Service\FileUploader;
+use MaciejBundle\Service\FileuploaderAWS;
 
 class GameImageController extends Controller
 {
@@ -24,15 +25,19 @@ class GameImageController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             //pilnuje żeby wartość nazwy pliku nie była całą ścieżką
-            foreach ( $gamelist as $game){
-            $number = $game->getId();
-            $company = $em->getRepository('MaciejBundle:Games')->find($number);
-           
-            $fileName = $company->getLogo()->getFilename();
-            $company->setLogo($fileName);
+            foreach ($gamelist as $game) {
+                $number = $game->getId();
+                $company = $em->getRepository('MaciejBundle:Games')->find($number);
+
+                $fileName = $company->getLogo()->getFilename();
+                $company->setLogo($fileName);
             }
 
-            $em->persist($game);
+            $em->persist($gameimage);
+            $file = $gameimage->getGameimage();
+            $fileUploader = $this->get(FileUploaderAWS::class);
+            $fileUploader->setBucket('gameimage');
+            $fileUploader->upload($file);
             $em->flush();
 
 
@@ -53,6 +58,27 @@ class GameImageController extends Controller
                     'games' => $gamelist,
                     'game1' => $game,
                     'images' => $images));
+    }
+
+    public function deleteAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $fileUploader = $this->get(FileUploader::class);
+        $number = $request->get('wild');
+        $delete = $em->getRepository('MaciejBundle:GameImage')->Find($number);
+        $fileName = $delete->getGameimage();
+        $wild = $delete->getTitle()->getTitle();
+        $fileUploader->delete($fileName);
+        // Temp fix
+        
+        $fileName1 = $delete->getTitle()->getLogo()->getFilename();
+        $delete->getTitle()->setLogo($fileName1);
+        
+        $em->remove($delete);
+        $em->flush();
+
+
+        return $this->redirectToRoute('maciej_gamesimagelist', array('wild' => $wild));
     }
 
 }

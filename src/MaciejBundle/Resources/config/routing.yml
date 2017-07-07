@@ -46,6 +46,10 @@ maciej_gamesimagelist:
     path: /maciej/gamesimagelist/{wild}
     defaults: { _controller: MaciejBundle:GameImage:list}
     
+maciej_gameimagedelete:
+    path: /maciej/gamesimagedelete/{wild}
+    defaults: { _controller: MaciejBundle:GameImage:delete}
+    
 
     
 
