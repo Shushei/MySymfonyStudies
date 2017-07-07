@@ -7,7 +7,8 @@ use MaciejBundle\Form\GameImageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use MaciejBundle\Service\FileUploader;
-use MaciejBundle\Service\FileuploaderAWS;
+use MaciejBundle\Service\FileUploaderAWS;
+use Aws\S3\S3Client;
 
 class GameImageController extends Controller
 {
@@ -32,12 +33,13 @@ class GameImageController extends Controller
                 $fileName = $company->getLogo()->getFilename();
                 $company->setLogo($fileName);
             }
-
-            $em->persist($gameimage);
             $file = $gameimage->getGameimage();
             $fileUploader = $this->get(FileUploaderAWS::class);
             $fileUploader->setBucket('gameimage');
+          
             $fileUploader->upload($file);
+            $em->persist($gameimage);
+
             $em->flush();
 
 
@@ -70,10 +72,10 @@ class GameImageController extends Controller
         $wild = $delete->getTitle()->getTitle();
         $fileUploader->delete($fileName);
         // Temp fix
-        
+
         $fileName1 = $delete->getTitle()->getLogo()->getFilename();
         $delete->getTitle()->setLogo($fileName1);
-        
+
         $em->remove($delete);
         $em->flush();
 

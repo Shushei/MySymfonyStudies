@@ -1,0 +1,3 @@
+services:
+    MaciejBundle\Service\FileUploaderAWS:
+        arguments:

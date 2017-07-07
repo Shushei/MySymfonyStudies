@@ -11,7 +11,8 @@ parameters:
     logo_directory: '%kernel.project_dir%/web/uploads/logos'
     company_directory: '%kernel.project_dir%/web/uploads/companies'
     gameimage_directory: '%kernel.project_dir%/web/uploads/gameimages'
-
+    aws_s3_key: 'AKIAI6NGJLAK7QK2UEVQ'
+    aws_s3_secret:  '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'
 framework:
     #esi: ~
     #translator: { fallbacks: ['%locale%'] }

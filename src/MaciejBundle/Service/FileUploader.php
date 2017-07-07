@@ -40,16 +40,19 @@ class FileUploader
         }
         return $fileName;
     }
+    
 
     public function getTargetDir()
     {
         return $this->targetDir;
     }
+
     public function getTargetDirCompany()
     {
         return $this->targetDirCompany;
     }
-     public function getTargetDirGameImage()
+
+    public function getTargetDirGameImage()
     {
         return $this->targetDirGameImage;
     }

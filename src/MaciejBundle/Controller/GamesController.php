@@ -3,7 +3,6 @@
 namespace MaciejBundle\Controller;
 
 use MaciejBundle\Entity\Games;
-
 use MaciejBundle\Form\GamesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,14 +14,16 @@ class GamesController extends Controller
     public function showAction(Request $request)
     {
         $game = new Games();
-        
+
 
         $form = $this->createForm(GamesType::class, $game);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            
+            $fileName1 = $game->getCompany()->getClogo()->getFilename();
+            $company = $game->getCompany();
+            $company->setClogo($fileName1);
 
             $em->persist($game);
             $em->flush();
@@ -66,8 +67,8 @@ class GamesController extends Controller
             $delete = $em->getRepository('MaciejBundle:Games')->find($number);
             $fileUploader = $this->get(FileUploader::class);
             $fileName = $delete->getLogo();
-                
-            
+
+
             foreach ($games as $game) {
                 $fileName1 = $game->getLogo()->getFilename();
                 $game->setLogo($fileName1);
@@ -75,7 +76,7 @@ class GamesController extends Controller
             $em->remove($delete);
             $em->flush();
             $delete1 = $em->getRepository('MaciejBundle:Games')->find($number);
-            if (empty($delete1)){
+            if (empty($delete1)) {
                 $fileUploader->delete($fileName);
             }
 
