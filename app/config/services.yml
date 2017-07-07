@@ -34,7 +34,7 @@ services:
     MaciejBundle\Service\FileUploader:
         arguments:
             $targetDir:   '%logo_directory%'
-            
+
     MaciejBundle\EventListener\LogoUploadListener:
         tags:
             - {name: doctrine.event_listener, event: prePersist }
