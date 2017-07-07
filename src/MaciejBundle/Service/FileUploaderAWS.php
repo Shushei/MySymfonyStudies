@@ -1,12 +1,10 @@
 <?php
-require 'vendor/autoload.php';
-
 namespace MaciejBundle\Service;
 
 use Aws\S3\S3Client;
 Use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class AmazonS3
+class FileUploaderAWS
 {
 
 private $client;

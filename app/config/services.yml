@@ -34,6 +34,8 @@ services:
     MaciejBundle\Service\FileUploader:
         arguments:
             $targetDir:   '%logo_directory%'
+            $targetDirCompany:   '%company_directory%'
+            $targetDirGameImage: '%gameimage_directory%'
 
     MaciejBundle\EventListener\LogoUploadListener:
         tags:
