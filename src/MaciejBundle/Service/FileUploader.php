@@ -5,61 +5,77 @@ namespace MaciejBundle\Service;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Filesystem\Filesystem;
+use MaciejBundle\Service\UploaderInterface;
 
-class FileUploader
+class FileUploader implements UploaderInterface
 {
 
-    private $targetDir;
-    private $targetDirCompany;
-    private $targetDirGameImage;
+    private $path;
     public $var;
+
+    public function __construct($args)
+    {
+
+        $this->path = $args;
+    }
+
 
     public function setVar($var)
     {
-        $this->var = $var;
+        return $this->var = $var;
     }
 
-    public function __construct($targetDir, $targetDirCompany, $targetDirGameImage)
+    public function getVar()
     {
-        $this->targetDir = $targetDir;
-        $this->targetDirCompany = $targetDirCompany;
-        $this->targetDirGameImage = $targetDirGameImage;
+        return $this->var;
+    }
+
+    public function setPath($path)
+    {
+        return $this->path = $path;
+    }
+
+    public function getPath()
+    {
+        return $this->path;
     }
 
     public function upload(UploadedFile $file)
     {
         $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+        $path = $this->path;
         if ($this->var == 'games') {
-            $file->move($this->targetDir, $fileName);
+            $file->move($path['logo'], $fileName);
         }
         if ($this->var == 'companies') {
-            $file->move($this->targetDirCompany, $fileName);
+            $file->move($path['company'], $fileName);
         }
         if ($this->var == 'gameimage') {
-            $file->move($this->targetDirGameImage, $fileName);
+            $file->move($path['image'], $fileName);
         }
         return $fileName;
     }
-    
 
-    public function getTargetDir()
+    public function listing($em)
     {
-        return $this->targetDir;
+        $path = $this->path;
+
+
+        if ($this->var == 'games') {
+            $plainURL = $em->getRepository('MaciejBundle:Games')->findAll();
+        }
+        if ($this->var == 'companies') {
+            $plainURL = $em->getRepository('MaciejBundle:Companies')->findAll();
+        }
+        if ($this->var == 'gameimage') {
+            $plainURL = $em->getRepository('MaciejBundle:GameImage')->findAll();
+        }
+        return $plainURL;
     }
 
-    public function getTargetDirCompany()
+    public function delete($key)
     {
-        return $this->targetDirCompany;
-    }
-
-    public function getTargetDirGameImage()
-    {
-        return $this->targetDirGameImage;
-    }
-
-    public function delete($fileName)
-    {
-        $file = new File($fileName);
+        $file = new File($key);
         $filedelete = new Filesystem();
         $filedelete->remove($file);
     }

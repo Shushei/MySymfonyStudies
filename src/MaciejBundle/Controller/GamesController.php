@@ -15,7 +15,6 @@ class GamesController extends Controller
     {
         $game = new Games();
 
-
         $form = $this->createForm(GamesType::class, $game);
         $form->handleRequest($request);
 
@@ -62,10 +61,14 @@ class GamesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $games = $em->getRepository('MaciejBundle:Games')->findAll();
         $number = $request->get('wild');
+        
+        $fileUploader = $this->get(FileUploader::class);
+        $fileUploader->setVar('games');                                                
+            $gamelist = $fileUploader->listing($em);
 
-        if (!empty($number) && !empty($delete = $em->getRepository('MaciejBundle:Games')->findOneById($number))) {
+       if (!empty($number) && !empty($delete = $em->getRepository('MaciejBundle:Games')->findOneById($number))) {
             $delete = $em->getRepository('MaciejBundle:Games')->find($number);
-            $fileUploader = $this->get(FileUploader::class);
+            
             $fileName = $delete->getLogo();
 
 
@@ -86,7 +89,7 @@ class GamesController extends Controller
 
 
 
-        return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $games]);
+        return $this->render('MaciejBundle:Games:list.html.twig', ['games' => $gamelist]);
     }
 
     public function delimgAction(Request $request)

@@ -61,17 +61,19 @@ class LogoUploadListener
     public function postLoad(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
+        $path = $this->uploader->getPath();
+       
         if ($entity instanceof Games && $fileName = $entity->getLogo()) {
             
-            $entity->setLogo(new File($this->uploader->getTargetDir() . '/' . $fileName));
+            $entity->setLogo(new File($path['logo'] . '/' . $fileName));
         }
         if ($entity instanceof Companies && $fileName = $entity->getClogo()) {
             
-            $entity->setClogo(new File($this->uploader->getTargetDirCompany() . '/' . $fileName));
+            $entity->setClogo(new File($path['company'] . '/' . $fileName));
         }
         if ($entity instanceof GameImage && $fileName = $entity->getGameimage()) {
             
-            $entity->setGameimage(new File($this->uploader->getTargetDirGameImage() . '/' . $fileName));
+            $entity->setGameimage(new File($path['image'] . '/' . $fileName));
             
         }
             

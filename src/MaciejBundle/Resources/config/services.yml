@@ -1,3 +1,13 @@
-services:
+services:    
     MaciejBundle\Service\FileUploaderAWS:
         arguments:
+           
+        
+    
+    MaciejBundle\Service\FileUploader:
+        arguments:
+          
+            $args:
+                 logo : '%logo_directory%'
+                 company:   '%company_directory%'
+                 image: '%gameimage_directory%'

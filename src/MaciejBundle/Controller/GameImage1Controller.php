@@ -28,7 +28,7 @@ class GameImage1Controller extends Controller
            
             $file = $gameimage->getGameimage();
             $fileUploader = $this->get(FileUploaderAWS::class);
-            $fileUploader->setBucket('gameimage');
+            $fileUploader->setVar('gameimage');
             $filename = $fileUploader->upload($file);
             $gameimage->setGameimage($filename);
             $em->persist($gameimage);
@@ -47,7 +47,7 @@ class GameImage1Controller extends Controller
             $em = $this->getDoctrine()->getManager();
             $title = $request->get('wild');
            $fileUploader = $this->get(FileUploaderAWS::class);
-           $fileUploader->setBucket('gameimage');
+           $fileUploader->setVar('gameimage');
            $plainURL = $fileUploader->listing();
            $images = $em->getRepository('MaciejBundle:GameImage')->findAll();
            $games = $em->getRepository('MaciejBundle:Games')->findAll();
